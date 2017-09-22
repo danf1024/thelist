@@ -1,0 +1,36 @@
+<h1>Invitations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td></td>
+      <td>RSVP Code</td>
+      <td>Addressee</td>
+      <td>Address Line 1</td>
+      <td>Address Line 2</td>
+      <td>City</td>
+      <td>State</td>
+      <td>Country</td>
+      <td>Zip</td>
+      <td>Sent at</td>
+      <td>RVSPd at</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitations.each do |invitation| %>
+      <tr>
+        <td><%= link_to 'View', app_invitation_path(invitation) %></td>
+        <td><%= invitation.rsvp_code %></td>
+        <td><%= invitation.addressee %></td>
+        <td><%= invitation.address_line_1 %></td>
+        <td><%= invitation.address_line_2 %></td>
+        <td><%= invitation.city %></td>
+        <td><%= invitation.state %></td>
+        <td><%= invitation.country %></td>
+        <td><%= invitation.zip %></td>
+        <td><%= invitation.sent_at %></td>
+        <td><%= invitation.rsvped_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

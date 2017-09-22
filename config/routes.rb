@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'app/welcome#index'
+
+  namespace :app do
+    get 'welcome', to: 'welcome#index'
+
+    resources :invitations
+    resources :guests
+  end
 end
