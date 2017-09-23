@@ -19,7 +19,7 @@
   <tbody>
     <% @invitations.each do |invitation| %>
       <tr>
-        <td><%= link_to 'View', app_invitation_path(invitation) %></td>
+        <td><%= link_to 'View', invitation_path(invitation) %></td>
         <td><%= invitation.rsvp_code %></td>
         <td><%= invitation.addressee %></td>
         <td><%= invitation.address_line_1 %></td>

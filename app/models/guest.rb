@@ -1,4 +1,4 @@
-class Guest < ActiveRecord::Base
+class Guest < ApplicationRecord
   belongs_to :invitation
 
   validates :rsvp_code, uniqueness: true
