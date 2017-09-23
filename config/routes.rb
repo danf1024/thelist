@@ -12,4 +12,5 @@ Rails.application.routes.draw do
 
   resources :invitations
   resources :guests
+  resources :invitation_imports
 end

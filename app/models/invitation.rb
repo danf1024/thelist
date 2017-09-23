@@ -2,6 +2,9 @@ class Invitation < ApplicationRecord
   has_many :guests
 
   validates :rsvp_code, :addressee, :address_line_1, :city, :zip, presence: true
+  validates :rsvp_code, uniqueness: true
+
+  before_validation :set_rsvp_code, if: -> { rsvp_code.nil? }
 
   def address_to_s
     lines = []
@@ -14,5 +17,20 @@ class Invitation < ApplicationRecord
     last_line = [city_state.join(", "), zip].join(" ")
     lines << last_line
     lines.join("\n")
+  end
+
+  private
+
+  def set_rsvp_code
+    existing_codes = self.class.pluck(:rsvp_code)
+    self.rsvp_code = generate_rsvp_code
+
+    while existing_codes.include? rsvp_code
+      self.rsvp_code = generate_rsvp_code
+    end
+  end
+
+  def generate_rsvp_code
+    (0..1).map { ('a'..'z').to_a[rand(26)] }.concat([rand(0..9)]).join
   end
 end

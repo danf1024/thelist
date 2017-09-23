@@ -1,0 +1,4 @@
+<%= simple_form_for :invitation_import, url: invitation_imports_path, multipart: true do |f| %>
+  <%= f.input :file, as: :file %>
+  <%= f.submit %>
+<% end %>
