@@ -31,7 +31,7 @@ class Invitation < ApplicationRecord
   end
 
   def generate_rsvp_code
-    (0..1).map { code_letters[rand(code_letters.length)] }.concat([rand(1..9)]).join
+    (0..1).map { code_letters[rand(code_letters.length)] }.concat([rand(2..9)]).join
   end
 
   def code_letters
