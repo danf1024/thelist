@@ -31,6 +31,10 @@ class Invitation < ApplicationRecord
   end
 
   def generate_rsvp_code
-    (0..1).map { ('a'..'z').to_a[rand(26)] }.concat([rand(0..9)]).join
+    (0..1).map { code_letters[rand(code_letters.length)] }.concat([rand(1..9)]).join
+  end
+
+  def code_letters
+    ('a'..'z').reject { |x| x == 'o' }
   end
 end
