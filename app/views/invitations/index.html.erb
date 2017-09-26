@@ -6,6 +6,7 @@
       <td></td>
       <td>RSVP Code</td>
       <td>Addressee</td>
+      <td>Guest Count</td>
       <td>Address Line 1</td>
       <td>Address Line 2</td>
       <td>City</td>
@@ -23,6 +24,7 @@
         <td><%= link_to 'View', invitation_path(invitation) %></td>
         <td><%= invitation.rsvp_code %></td>
         <td><%= invitation.addressee %></td>
+        <td><%= invitation.guests.count %> </td>
         <td><%= invitation.address_line_1 %></td>
         <td><%= invitation.address_line_2 %></td>
         <td><%= invitation.city %></td>
