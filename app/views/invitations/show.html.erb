@@ -6,7 +6,11 @@
 <hr></hr>
 
 <p>Sent at: <%= @invitation.sent_at %></p>
-<p>RSVPed at: <%= @invitation.rsvped_at %></p>
+<% if @invitation.accepted_at.present? %>
+  <p>Accepted at: <%= @invitation.accepted_at %></p>
+<% elsif @invitation.declined_at.present? %>
+  <p>Declined at: <%= @invitation.declined_at %></p>
+<% end %>
 
 <% if @invitation.rsvp_comment.present? %>
   <p>RSVP Comment: <%= @invitation.rsvp_comment %></p>

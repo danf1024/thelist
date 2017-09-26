@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170923031338) do
+ActiveRecord::Schema.define(version: 20170926184950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,11 @@ ActiveRecord::Schema.define(version: 20170923031338) do
     t.string "country"
     t.string "zip", null: false
     t.datetime "sent_at"
-    t.datetime "rsvped_at"
     t.string "rsvp_comment", limit: 1024
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "accepted_at"
+    t.datetime "declined_at"
   end
 
   create_table "users", force: :cascade do |t|

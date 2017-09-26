@@ -13,7 +13,8 @@
       <td>Country</td>
       <td>Zip</td>
       <td>Sent at</td>
-      <td>RVSPd at</td>
+      <td>Accepted at</td>
+      <td>Declined at</td>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +30,8 @@
         <td><%= invitation.country %></td>
         <td><%= invitation.zip %></td>
         <td><%= invitation.sent_at %></td>
-        <td><%= invitation.rsvped_at %></td>
+        <td><%= invitation.accepted_at %></td>
+        <td><%= invitation.declined_at %></td>
       </tr>
     <% end %>
   </tbody>
