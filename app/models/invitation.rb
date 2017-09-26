@@ -22,6 +22,27 @@ class Invitation < ApplicationRecord
     lines.join("\n")
   end
 
+  def accept!(guest_params)
+    transaction do
+      update!(accepted_at: Time.zone.now, declined_at: nil)
+      guests.each do |guest|
+        response = guest_params.find { |g| g[:id] == guest.id }
+        if response.present?
+          guest.accept! response
+        else
+          guest.decline!
+        end
+      end
+    end
+  end
+
+  def decline!
+    transaction do
+      update!(declined_at: Time.zone.now, accepted_at: nil)
+      guests.each(&:decline!)
+    end
+  end
+
   private
 
   def set_rsvp_code

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :invitation_imports
 
   namespace :api do
-    resources :invitations, param: :rsvp_code
+    resources :invitations, only: :show, param: :rsvp_code
+    resources :rsvps, only: :create
   end
 end

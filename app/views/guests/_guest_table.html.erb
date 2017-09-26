@@ -11,7 +11,13 @@
   <tbody>
     <% guests.each do |guest| %>
       <tr>
-        <td><%= guest.name %></td>
+        <td>
+          <% if guest.name.present? %>
+            <%= guest.name %>
+          <% else %>
+            (guest)
+          <% end %>
+        </td>
         <td><%= guest.category %></td>
         <td><%= guest.accepted_at %></td>
         <td><%= guest.declined_at %></td>

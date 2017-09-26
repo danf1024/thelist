@@ -3,6 +3,7 @@ class ApiController < ApplicationController
 
   prepend_before_action :return_json
   skip_before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   private
 
