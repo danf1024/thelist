@@ -4,6 +4,9 @@ class Invitation < ApplicationRecord
   validates :rsvp_code, :addressee, :address_line_1, :city, :zip, presence: true
   validates :rsvp_code, uniqueness: true
 
+  validates :accepted_at, absence: true, if: -> { declined_at.present? }
+  validates :declined_at, absence: true, if: -> { accepted_at.present? }
+
   before_validation :set_rsvp_code, if: -> { rsvp_code.nil? }
 
   def address_to_s
