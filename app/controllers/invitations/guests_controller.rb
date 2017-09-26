@@ -18,6 +18,6 @@ class Invitations::GuestsController < ApplicationController
   private
 
   def create_params
-    params.fetch(:guest, {}).permit(:name, :category)
+    params.fetch(:guest, {}).permit(:name)
   end
 end
