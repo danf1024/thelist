@@ -10,7 +10,14 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :invitations
+  resources :invitations, only: [:index, :show] do
+    resources :guests, only: [:new, :create], controller: 'invitations/guests'
+  end
+
   resources :guests
   resources :invitation_imports
+
+  namespace :api do
+    resources :invitations, param: :rsvp_code
+  end
 end

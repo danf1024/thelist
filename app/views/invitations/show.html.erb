@@ -12,6 +12,6 @@
   <p>RSVP Comment: <%= @invitation.rsvp_comment %></p>
 <% end %>
 
-<h2>Guests</h2>
+<h2>Guests - <%= link_to 'New Guest', new_invitation_guest_path(@invitation) %></h2>
 
 <%= render 'guests/guest_table', guests: @invitation.guests %>

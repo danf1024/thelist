@@ -1,0 +1,6 @@
+<h2>New guest for invitation <%= @invitation.rsvp_code %> (<%= @invitation.addressee %>)</h2>
+<%= simple_form_for :guest, url: invitation_guests_path(@invitation), method: :post do |f| %>
+  <%= f.input :name %>
+  <%= f.input :category, as: :select , collection: Guest.category_options, include_blank: false %>
+  <%= f.submit %>
+<% end %>
