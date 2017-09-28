@@ -1,10 +1,13 @@
 class ApiController < ApplicationController
+  ALLOWED_ORIGN = 'http://www.ahmedfelicettawedding.com'
+
   respond_to :json
 
   prepend_before_action :return_json
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
   before_action :underscore_params!
+  after_action :set_cors_headers
 
   private
 
@@ -27,5 +30,17 @@ class ApiController < ApplicationController
 
   def return_json
     request.format = :json
+  end
+
+  def set_cors_headers
+    headers['Access-Control-Allow-Origin'] = origin if cors_allowed?
+  end
+
+  def cors_allowed?
+    origin == ALLOWED_ORIGN || Rails.env.development?
+  end
+
+  def origin
+    request.headers['HTTP_ORIGIN'] || ''
   end
 end
