@@ -26,7 +26,7 @@ class Invitation < ApplicationRecord
     transaction do
       update!(accepted_at: Time.zone.now, declined_at: nil)
       guests.each do |guest|
-        response = guest_params.find { |g| g[:id] == guest.id }
+        response = guest_params.find { |g| g[:id].to_i == guest.id }
         if response.present?
           guest.accept! response
         else
