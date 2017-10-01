@@ -7,6 +7,10 @@ class Invitation < ApplicationRecord
   validates :accepted_at, absence: true, if: -> { declined_at.present? }
   validates :declined_at, absence: true, if: -> { accepted_at.present? }
 
+  scope :accepted, -> { where.not(accepted_at: nil) }
+  scope :declined, -> { where.not(declined_at: nil) }
+  scope :outstanding, -> { where(accepted_at: nil, declined_at: nil) }
+
   before_validation :set_rsvp_code, if: -> { rsvp_code.nil? }
 
   def address_to_s
@@ -33,6 +37,7 @@ class Invitation < ApplicationRecord
           guest.decline!
         end
       end
+      RsvpMailer.new_rsvp(self).deliver_later
     end
   end
 
@@ -40,7 +45,12 @@ class Invitation < ApplicationRecord
     transaction do
       update!(declined_at: Time.zone.now, accepted_at: nil, rsvp_comment: comment)
       guests.each(&:decline!)
+      RsvpMailer.new_rsvp(self).deliver_later
     end
+  end
+
+  def accepted?
+    accepted_at.present?
   end
 
   private

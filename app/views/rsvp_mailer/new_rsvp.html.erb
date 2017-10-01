@@ -1,0 +1,22 @@
+<h1><%= @invitation.addressee %> (<%= @invitation.rsvp_code %>)</h1>
+<% if @invitation.accepted? %>
+  <h2>Accepted</h2>
+  <% @invitation.guests.accepted.each do |guest| %>
+    <p><%= guest.name %> - <%= guest.entree_selection %></p>
+  <% end %>
+<% else %>
+  <h2>Declined</h2>
+<% end %>
+<p>Comment: <%= @invitation.rsvp_comment %></p>
+<h3>Invitations:</h3>
+<ul>
+  <li>Accepted: <%= Invitation.accepted.count %></li>
+  <li>Declined: <%= Invitation.declined.count %></li>
+  <li>Outstanding: <%= Invitation.outstanding.count %></li>
+</ul>
+<h3>Headcount</h3>
+<ul>
+  <li>Accepted: <%= Guest.accepted.count %></li>
+  <li>Declined: <%= Guest.declined.count %></li>
+  <li>Outstanding: <%= Guest.outstanding.count %></li>
+</ul>

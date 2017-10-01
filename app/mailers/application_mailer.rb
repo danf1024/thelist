@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default to: -> { User.pluck(:email) },
+          from: "danf1024@gmail.com"
   layout "mailer"
 end
