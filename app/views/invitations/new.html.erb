@@ -1,0 +1,11 @@
+<h2>New Invitation</h2>
+<%= simple_form_for :invitation, url: invitations_path, method: :post do |f| %>
+  <%= f.input :addressee %>
+  <%= f.input :address_line_1 %>
+  <%= f.input :address_line_2 %>
+  <%= f.input :city %>
+  <%= f.input :state %>
+  <%= f.input :country, as: :text %>
+  <%= f.input :zip %>
+  <%= f.submit %>
+<% end %>

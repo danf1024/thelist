@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :invitations, only: [:index, :show] do
+  resources :invitations do
     resources :guests, only: [:new, :create], controller: 'invitations/guests'
   end
 
