@@ -1,0 +1,5 @@
+<h2>Edit guest for invitation <%= @guest.invitation.rsvp_code %> (<%= @guest.invitation.addressee %>)</h2>
+<%= simple_form_for :guest, url: guest_path(@guest), method: :put do |f| %>
+  <%= f.input :name %>
+  <%= f.submit %>
+<% end %>

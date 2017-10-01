@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <td></td>
       <td>Name</td>
       <td>Accepted at</td>
       <td>Declined at</td>
@@ -10,6 +11,7 @@
   <tbody>
     <% guests.each do |guest| %>
       <tr>
+        <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
         <td>
           <% if guest.name.present? %>
             <%= guest.name %>
