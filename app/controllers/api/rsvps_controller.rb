@@ -3,9 +3,9 @@ class Api::RsvpsController < ApiController
     invitation = Invitation.find_by! rsvp_code: create_params[:rsvp_code]
 
     if accepted?
-      invitation.accept! guest_params
+      invitation.accept! create_params[:comment], guest_params
     else
-      invitation.decline!
+      invitation.decline! create_params[:comment]
     end
 
     head :created
@@ -14,7 +14,7 @@ class Api::RsvpsController < ApiController
   private
 
   def create_params
-    params.permit(:rsvp_code, :accepted, guests: [:id, :name, :entree_selection])
+    params.permit(:rsvp_code, :accepted, :comment, guests: [:id, :name, :entree_selection])
   end
 
   def accepted?

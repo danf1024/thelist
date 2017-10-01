@@ -22,9 +22,9 @@ class Invitation < ApplicationRecord
     lines.join("\n")
   end
 
-  def accept!(guest_params)
+  def accept!(comment, guest_params)
     transaction do
-      update!(accepted_at: Time.zone.now, declined_at: nil)
+      update!(accepted_at: Time.zone.now, declined_at: nil, rsvp_comment: comment)
       guests.each do |guest|
         response = guest_params.find { |g| g[:id].to_i == guest.id }
         if response.present?
@@ -36,9 +36,9 @@ class Invitation < ApplicationRecord
     end
   end
 
-  def decline!
+  def decline!(comment)
     transaction do
-      update!(declined_at: Time.zone.now, accepted_at: nil)
+      update!(declined_at: Time.zone.now, accepted_at: nil, rsvp_comment: comment)
       guests.each(&:decline!)
     end
   end
