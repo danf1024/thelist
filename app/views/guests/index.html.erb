@@ -1,3 +1,8 @@
 <h1>Guests</h1>
 
-<%= render 'guest_table', guests: @guests %>
+<%= datagrid_form_for @guests_grid, url: guests_path %>
+
+<p>Total guests: <%= @guests_grid.assets.total_entries %></p>
+
+<%= datagrid_table @guests_grid %>
+<%= will_paginate @guests_grid.assets %>

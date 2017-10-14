@@ -1,40 +1,9 @@
 <h1>Invitations - <%= link_to 'New Invitation', new_invitation_path %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <td></td>
-      <td>RSVP Code</td>
-      <td>Addressee</td>
-      <td>Guest Count</td>
-      <td>Address Line 1</td>
-      <td>Address Line 2</td>
-      <td>City</td>
-      <td>State</td>
-      <td>Country</td>
-      <td>Zip</td>
-      <td>Sent at</td>
-      <td>Accepted at</td>
-      <td>Declined at</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invitations.each do |invitation| %>
-      <tr>
-        <td><%= link_to 'View', invitation_path(invitation) %></td>
-        <td><%= invitation.rsvp_code %></td>
-        <td><%= invitation.addressee %></td>
-        <td><%= invitation.guests.count %> </td>
-        <td><%= invitation.address_line_1 %></td>
-        <td><%= invitation.address_line_2 %></td>
-        <td><%= invitation.city %></td>
-        <td><%= invitation.state %></td>
-        <td><%= invitation.country %></td>
-        <td><%= invitation.zip %></td>
-        <td><%= invitation.sent_at %></td>
-        <td><%= invitation.accepted_at %></td>
-        <td><%= invitation.declined_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= datagrid_form_for @invitations_grid, url: invitations_path %>
+
+<p>Total invitations: <%= @invitations_grid.assets.total_entries %></p>
+<p>Total guests: <%= @invitations_grid.assets.sum { |i| i.guests.count } %></p>
+
+<%= datagrid_table @invitations_grid %>
+<%= will_paginate @invitations_grid.assets %>

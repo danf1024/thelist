@@ -1,6 +1,8 @@
 class InvitationsController < ApplicationController
   def index
-    @invitations = Invitation.order(rsvp_code: :asc)
+    @invitations_grid = InvitationsGrid.new(index_params) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   def show
@@ -22,5 +24,9 @@ class InvitationsController < ApplicationController
 
   def create_params
     params.fetch(:invitation, {}).permit(:addressee, :address_line_1, :address_line_2, :city, :state, :zip, :country)
+  end
+
+  def index_params
+    params.fetch(:invitations_grid, {}).permit(:rsvp_code, :addressee, :accepted, :declined, :outstanding, :descending, :ascending, :order)
   end
 end

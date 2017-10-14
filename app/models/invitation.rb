@@ -13,6 +13,8 @@ class Invitation < ApplicationRecord
 
   before_validation :set_rsvp_code, if: -> { rsvp_code.nil? }
 
+  self.per_page = 100
+
   def address_to_s
     lines = []
     lines << address_line_1

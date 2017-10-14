@@ -1,6 +1,8 @@
 class GuestsController < ApplicationController
   def index
-    @guests = Guest.all
+    @guests_grid = GuestsGrid.new(index_params) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   def edit
@@ -21,5 +23,9 @@ class GuestsController < ApplicationController
 
   def update_params
     params.fetch(:guest, {}).permit(:name)
+  end
+
+  def index_params
+    params.fetch(:guests_grid, {}).permit(:name, :entree_selection, :accepted, :declined, :outstanding, :order, :ascending, :descending)
   end
 end
