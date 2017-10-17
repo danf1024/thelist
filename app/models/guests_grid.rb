@@ -31,7 +31,7 @@ class GuestsGrid
     end
   end
 
-  column(:name)
+  column(:name) { self.name || '(guest)' }
   column(:entree_selection)
   column(:accepted_at, order: false)
   column(:declined_at, order: false)
