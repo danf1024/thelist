@@ -3,7 +3,9 @@ class GuestsGrid
 
   scope { Guest }
 
-  filter(:name)
+  filter(:name, :string) do |value|
+    where("name ilike ?", "%#{value}%")
+  end
 
   filter(:entree_selection, :enum, select: Guest.entree_options)
 
