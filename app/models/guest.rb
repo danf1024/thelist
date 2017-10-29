@@ -14,6 +14,7 @@ class Guest < ApplicationRecord
   scope :accepted, -> { where.not(accepted_at: nil) }
   scope :declined, -> { where.not(declined_at: nil) }
   scope :outstanding, -> { where(accepted_at: nil, declined_at: nil) }
+  scope :not_declined, -> { where(declined_at: nil) }
 
   self.per_page = 100
 

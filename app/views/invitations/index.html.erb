@@ -3,7 +3,7 @@
 <%= datagrid_form_for @invitations_grid, url: invitations_path %>
 
 <p>Total invitations: <%= @invitations_grid.assets.total_entries %></p>
-<p>Total guests: <%= @invitations_grid.assets.sum { |i| i.guests.count } %></p>
+<p>Total guests: <%= @invitations_grid.assets.sum { |i| i.guests.not_declined.count } %></p>
 
 <%= datagrid_table @invitations_grid %>
 <%= will_paginate @invitations_grid.assets %>

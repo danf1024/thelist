@@ -35,7 +35,7 @@ class InvitationsGrid
 
   column(:rsvp_code)
   column(:addressee)
-  column(:guest_count) { guests.count }
+  column(:guest_count) { guests.not_delcined.count }
   column(:sent_at, order: false)
   column(:accepted_at, order: false)
   column(:declined_at, order: false)
