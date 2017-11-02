@@ -8,7 +8,7 @@ class Api::RsvpsController < ApiController
       invitation.decline! create_params[:comment]
     end
 
-    RsvpMailer.new(invitation).deliver_later
+    RsvpMailer.new_rsvp(invitation).deliver_later
 
     head :created
   end
