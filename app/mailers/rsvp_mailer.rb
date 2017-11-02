@@ -1,6 +1,6 @@
 class RsvpMailer < ApplicationMailer
-  def new_rsvp(invitation_id)
-    @invitation = Invitation.find invitation_id
+  def new_rsvp(invitation)
+    @invitation = invitation
     mail(subject: "New RSVP - #{@invitation.addressee}")
   end
 end

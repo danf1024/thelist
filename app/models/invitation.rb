@@ -39,7 +39,6 @@ class Invitation < ApplicationRecord
           guest.decline!
         end
       end
-      RsvpMailer.new_rsvp(id).deliver_later
     end
   end
 
@@ -47,7 +46,6 @@ class Invitation < ApplicationRecord
     transaction do
       update!(declined_at: Time.zone.now, accepted_at: nil, rsvp_comment: comment)
       guests.each(&:decline!)
-      RsvpMailer.new_rsvp(id).deliver_later
     end
   end
 
