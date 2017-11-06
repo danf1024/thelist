@@ -16,7 +16,7 @@ class Guest < ApplicationRecord
   scope :outstanding, -> { where(accepted_at: nil, declined_at: nil) }
   scope :not_declined, -> { where(declined_at: nil) }
 
-  self.per_page = 100
+  self.per_page = 200
 
   def self.entree_options
     ENTREE_CHOICES.map do |value|
