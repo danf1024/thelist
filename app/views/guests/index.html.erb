@@ -4,7 +4,7 @@
 
 <p>Total guests: <%= @guests_grid.assets.total_entries %></p>
 
-<p><%= link_to 'Download CSV', guests_path(format: :csv) %></p>
+<p><%= link_to 'Download CSV', format: :csv %></p>
 
 <%= datagrid_table @guests_grid %>
 <%= will_paginate @guests_grid.assets %>
