@@ -3,6 +3,11 @@ class GuestsController < ApplicationController
     @guests_grid = GuestsGrid.new(index_params) do |scope|
       scope.page(params[:page])
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @guests_grid.to_csv, filename: "guests-#{Date.today}.csv" }
+    end
   end
 
   def edit
