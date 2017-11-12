@@ -1,6 +1,6 @@
 class TablesController < ApplicationController
   def index
-    @tables = Table.all
+    @tables = Table.order(:number)
   end
 
   def show
@@ -30,6 +30,12 @@ class TablesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @table = Table.find params[:id]
+    @table.destroy!
+    redirect_to tables_path
   end
 
   private
