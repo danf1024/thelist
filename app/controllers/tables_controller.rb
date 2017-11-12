@@ -3,10 +3,6 @@ class TablesController < ApplicationController
     @tables = Table.order(:number)
   end
 
-  def show
-    @table = Table.find params[:id]
-  end
-
   def edit
     @table = Table.find params[:id]
   end
