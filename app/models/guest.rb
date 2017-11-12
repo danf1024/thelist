@@ -8,6 +8,7 @@ class Guest < ApplicationRecord
   }
 
   belongs_to :invitation
+  belongs_to :table
 
   validates :entree_selection, inclusion: { in: ENTREE_CHOICES }, if: -> { accepted_at.present? }
 

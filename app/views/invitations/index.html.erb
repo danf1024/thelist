@@ -1,5 +1,6 @@
 <h1>Invitations - <%= link_to 'New Invitation', new_invitation_path %></h1>
 <p><%= link_to 'Guests', guests_path %></p>
+<p><%= link_to 'Tables', tables_path %></p>
 
 <%= datagrid_form_for @invitations_grid, url: invitations_path %>
 

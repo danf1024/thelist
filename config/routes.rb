@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :guests
   resources :invitation_imports
+  resources :tables
 
   namespace :api do
     resources :invitations, only: :show, param: :rsvp_code

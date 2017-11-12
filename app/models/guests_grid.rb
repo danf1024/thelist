@@ -35,6 +35,10 @@ class GuestsGrid
 
   column(:name) { self.name || '(guest)' }
   column(:entree_selection)
+  column(:table) { self.table.number if self.table.present? }
   column(:accepted_at, order: false)
   column(:declined_at, order: false)
+  column(:actions, html: true) do |record|
+    link_to 'Edit', edit_guest_path(record)
+  end
 end

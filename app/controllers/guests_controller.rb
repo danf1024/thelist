@@ -27,7 +27,7 @@ class GuestsController < ApplicationController
   private
 
   def update_params
-    params.fetch(:guest, {}).permit(:name)
+    params.fetch(:guest, {}).permit(:name, :table_id)
   end
 
   def index_params
