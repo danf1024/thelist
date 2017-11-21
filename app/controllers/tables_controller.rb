@@ -11,7 +11,7 @@ class TablesController < ApplicationController
     @table = Table.find params[:id]
 
     if @table.update create_params
-      redirect_to table_path @table
+      redirect_to tables_path
     else
       render :edit
     end
