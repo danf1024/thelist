@@ -1,5 +1,5 @@
 <h2>Edit Table</h2>
-<%= simple_form_for @table, url: tables_path, method: :post do |f| %>
+<%= simple_form_for @table, url: tables_path, method: :put do |f| %>
   <%= f.input :number %>
   <%= f.input :description %>
   <%= f.submit %>
