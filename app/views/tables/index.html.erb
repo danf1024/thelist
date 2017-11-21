@@ -1,10 +1,10 @@
 <h1>Tables - <%= link_to 'New Table', new_table_path %></h1>
 
 <% @tables.each do |table| %>
-  <h2><%= table.full_name %></h2>
+  <h2><%= table.full_name %> (<%= table.guests.count %> guests)</h2>
 
   <% table.guests.to_a.group_by(&:invitation).values.flatten.each do |guest| %>
-    <p><%= guest.name %></p>
+    <p><%= guest.name %> - <%= guest.entree_selection %></p>
   <% end %>
 
 
